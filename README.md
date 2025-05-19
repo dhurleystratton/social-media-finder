@@ -13,6 +13,7 @@ This project provides a modular framework for finding and verifying social media
 - Result caching to minimize redundant requests
 - Confidence scoring for matches
 - Executive contact categorization utilities
+- Email pattern prediction and verification
 - Comprehensive rate limiting to respect platform policies
 
 ## Project Structure
@@ -71,6 +72,19 @@ contacts = [
 matched = identifier.categorize_contacts(contacts)
 for m in matched:
     print(m.role, m.name, m.score)
+```
+
+### Email Pattern Prediction
+
+```python
+from utils import EmailPatternGenerator
+
+generator = EmailPatternGenerator()
+contact = {"name": "Jane Smith", "organization": "Example Fund"}
+candidates = generator.generate_candidates(contact)
+verified = generator.verify_emails(candidates)
+best = generator.get_best_match(verified)
+print(best.email, best.confidence)
 ```
 
 ## Roadmap
