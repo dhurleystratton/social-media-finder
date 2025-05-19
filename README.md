@@ -12,6 +12,7 @@ This project provides a modular framework for finding and verifying social media
 - Batch processing capability
 - Result caching to minimize redundant requests
 - Confidence scoring for matches
+- Executive contact categorization utilities
 - Comprehensive rate limiting to respect platform policies
 
 ## Project Structure
@@ -55,6 +56,21 @@ results = finder.find_profile(name="John Smith", additional_info={"location": "N
 # Process results
 for result in results:
     print(f"Found profile: {result.url} (confidence: {result.confidence})")
+```
+
+### Executive Contact Categorization
+
+```python
+from utils import ContactIdentifier
+
+identifier = ContactIdentifier()
+contacts = [
+    {"name": "Jane Smith", "title": "Chief Legal Officer", "source": "website"},
+    {"name": "John Doe", "title": "Finance Director", "source": "linkedin"},
+]
+matched = identifier.categorize_contacts(contacts)
+for m in matched:
+    print(m.role, m.name, m.score)
 ```
 
 ## Roadmap
