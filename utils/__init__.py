@@ -4,6 +4,7 @@ from .organization_processor import OrganizationProcessor, Organization, normali
 from .website_scraper import WebsiteScraper, OrgRecord, Executive
 from .public_filings import PublicFilingsFinder, Filing, ContactInfo
 from .contact_identifier import ContactIdentifier, MatchedContact, Contact
+from .contact_integration import ContactIntegration, ContactRecord
 
 __all__ = [
     "OrganizationProcessor",
@@ -18,5 +19,7 @@ __all__ = [
     "ContactIdentifier",
     "MatchedContact",
     "Contact",
+    "ContactIntegration",
+    "ContactRecord",
 ]
 
