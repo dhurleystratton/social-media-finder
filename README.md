@@ -87,6 +87,49 @@ best = generator.get_best_match(verified)
 print(best.email, best.confidence)
 ```
 
+### Testing Framework
+
+The project ships with a small testing harness that can build reproducible
+samples and exercise individual components or the entire discovery pipeline.
+
+```python
+from pathlib import Path
+from utils import (
+    TestFramework,
+    OrganizationProcessor,
+    WebsiteScraper,
+    PublicFilingsFinder,
+    ContactIdentifier,
+    EmailPatternGenerator,
+)
+
+framework = TestFramework(
+    full_dataset_path="tafthartley_union_trusts.csv",
+    components={
+        "csv_processor": OrganizationProcessor("tafthartley_union_trusts.csv"),
+        "website_scraper": WebsiteScraper(rate_limit=0),
+        "filings_finder": PublicFilingsFinder(local_dir=Path("filings")),
+        "contact_identifier": ContactIdentifier(),
+        "email_generator": EmailPatternGenerator(rate_limit=0),
+    },
+)
+
+sample = framework.create_sample(size=5, random_seed=42)
+component_results = framework.test_components(
+    sample=sample,
+    components=["website_scraper", "filings_finder"],
+)
+pipeline_results = framework.test_pipeline(
+    sample=sample,
+    target_roles=["General Counsel", "CFO"],
+)
+framework.generate_report(
+    component_results=component_results,
+    pipeline_results=pipeline_results,
+    output_path="test_results.html",
+)
+```
+
 ## Roadmap
 
 - [x] Project structure setup
