@@ -1,0 +1,19 @@
+{
+  "ein": "123456789",
+  "organization_name": "Example Trust Fund",
+  "year": 2023,
+  "form_type": "Form 5500",
+  "officers": [
+    {
+      "name": "Alice Johnson",
+      "title": "General Counsel",
+      "email": "alice@example.com",
+      "phone": "555-555-5555"
+    },
+    {
+      "name": "Bob Smith",
+      "title": "Chief Financial Officer",
+      "email": "bob@example.com"
+    }
+  ]
+}
