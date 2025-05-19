@@ -5,6 +5,7 @@ from .website_scraper import WebsiteScraper, OrgRecord, Executive
 from .public_filings import PublicFilingsFinder, Filing, ContactInfo
 from .contact_identifier import ContactIdentifier, MatchedContact, Contact
 from .contact_integration import ContactIntegration, ContactRecord
+from .email_patterns import EmailPatternGenerator, EmailCandidate
 
 __all__ = [
     "OrganizationProcessor",
@@ -21,5 +22,7 @@ __all__ = [
     "Contact",
     "ContactIntegration",
     "ContactRecord",
+    "EmailPatternGenerator",
+    "EmailCandidate",
 ]
 
