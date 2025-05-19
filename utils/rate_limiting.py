@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import random
 import time
 from typing import Callable, TypeVar
 
@@ -28,3 +29,30 @@ def exponential_backoff(func: Callable[..., _T], *, retries: int = 5, base_delay
         return None
 
     return wrapper
+
+
+def linkedin_delay(min_delay: float = 30.0, max_delay: float = 90.0) -> None:
+    """Sleep with jitter for LinkedIn requests."""
+
+    delay = random.uniform(min_delay, max_delay)
+    jitter = random.uniform(0, 5)
+    total = delay + jitter
+    logger.debug("Sleeping %.2f seconds for LinkedIn pacing", total)
+    time.sleep(total)
+
+
+class SessionRotator:
+    """Utility for rotating sessions after N operations."""
+
+    def __init__(self, rotate_every: int = 5) -> None:
+        self.rotate_every = rotate_every
+        self.counter = 0
+
+    def increment(self) -> bool:
+        """Increase counter and return True if rotation is due."""
+
+        self.counter += 1
+        if self.counter >= self.rotate_every:
+            self.counter = 0
+            return True
+        return False
