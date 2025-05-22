@@ -6,6 +6,7 @@ from .public_filings import PublicFilingsFinder, Filing, ContactInfo
 from .contact_identifier import ContactIdentifier, MatchedContact, Contact
 from .contact_integration import ContactIntegration, ContactRecord
 from .email_patterns import EmailPatternGenerator, EmailCandidate
+from .domain_guesser import DomainGuesser
 from .test_framework import TestFramework, Sample
 
 __all__ = [
@@ -25,6 +26,7 @@ __all__ = [
     "ContactRecord",
     "EmailPatternGenerator",
     "EmailCandidate",
+    "DomainGuesser",
     "TestFramework",
     "Sample",
 ]
